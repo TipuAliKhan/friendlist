@@ -40,7 +40,7 @@ class App extends React.Component {
         isFav: false,
         id: Math.floor(1000000000 + Math.random() * 999090).toString()
       });
-      this.setState(this.state.friendList = friendList);
+      this.setState({friendList: friendList});
       e.target.value = '';
       if(this.state.friendList.length > 4){
         this.setState({...this.state.pagination, isPagination: true});
@@ -51,12 +51,12 @@ class App extends React.Component {
 
   addToFav = (id) => {
     const isInList = this.state.friendList.map(e => { if(e.id === id){ e.isFav = true; return e} return e});
-    this.setState(this.state.friendList = isInList);      
+    this.setState({friendList: isInList});      
   }
 
   handleDelete = (id) => {
     const isInList = this.state.friendList.filter(e => e.id !== id);
-    this.setState(this.state.friendList = isInList);
+    this.setState({friendList: isInList});
 
     if(this.state.friendList.length < 4){
       this.setState({...this.state.pagination, isPagination: false});
