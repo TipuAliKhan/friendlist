@@ -1,0 +1,87 @@
+ul,li{
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+
+li{
+  border-bottom: 1px solid #d4d4d4;
+}
+
+.App{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 300px;
+  border: 1px solid #d4d4d4;
+}
+
+.head{
+  background-color: #d4d4d4;
+  width: 100%;
+  padding: 10px;
+  font-size: 18px;
+  font-weight: 600;
+  box-sizing: border-box;
+}
+
+.body{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+#add-friend{
+  padding: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.list{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+.detail h2{
+  margin: 0;
+  font-size: 18px;
+  color: #000000;
+}
+.detail p{
+  margin: 0;
+  color: #a4a4a4;
+  font-size: 12px;
+}
+
+.action button{
+  margin: 8px;
+  font-size: 12px;
+  height: 24px;
+}
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.pagination span{
+  background-color: #a4a4a4;
+  display: inline-block;
+  padding: 5px;
+  cursor: pointer;
+}
