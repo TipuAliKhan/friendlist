@@ -38,11 +38,13 @@ class App extends React.Component {
         isFav: false,
         id: Math.floor(1000000000 + Math.random() * 999090).toString()
       });
-      this.setState({ friendList: friendList },() => this.updateDisplayList());
+      this.setState({ friendList: friendList },() => {
+        this.updateDisplayList();
+        if (this.state.friendList.length > 4) {
+          this.setState((state, props) => ({pagination: {currentPage: state.pagination.currentPage, isPagination: true} }));
+        }
+      });
       e.target.value = '';
-      if (this.state.friendList.length > 4) {
-        this.setState((state, props) => ({pagination: {currentPage: state.pagination.currentPage, isPagination: true} }));
-      }
     }
   }
 
@@ -53,11 +55,13 @@ class App extends React.Component {
 
   handleDelete = (id) => {
     const isInList = this.state.friendList.filter(e => e.id !== id);
-    this.setState((state, props) => ({ friendList: isInList }),()=>{this.updateDisplayList()});
+    this.setState((state, props) => ({ friendList: isInList }), ()=>{
+      this.updateDisplayList();
 
-    if (this.state.friendList.length < 4) {
-      this.setState((state, props) => ({pagination: { currentPage: state.pagination.currentPage, isPagination: false }}), ()=>{});
-    }
+      if (this.state.friendList.length <= 4) {
+        this.setState((state, props) => ({pagination: { currentPage: state.pagination.currentPage, isPagination: false }}));
+      }
+    });
   }
 
   handleNext = () => {
@@ -126,8 +130,8 @@ class App extends React.Component {
             {
               this.state.pagination.isPagination ? (
                 <div className="pagination">
-                  <span onClick={this.handlePrev}>Prev</span>
-                  <span onClick={this.handleNext}>Next</span>
+                  <span style={{visibility: this.state.pagination.currentPage == 1 ?'hidden':'visible'}} onClick={this.handlePrev}>Prev</span>
+                  <span style={{visibility: (this.state.pagination.currentPage*4) >= this.state.friendList.length ?'hidden':'visible'}} onClick={this.handleNext}>Next</span>
                 </div>) : ''
             }
           </div>
